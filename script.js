@@ -5,8 +5,10 @@ let selectedColor = darkenColor;
 const sketchArea = document.querySelector('.sketch-area');
 const clear = document.querySelector('.clear');
 
+//Initialize Gird
 sketchArea.style.width = `${sketchAreaSize}px`;
 sketchArea.style.height = `${sketchAreaSize}px`;
+sketchArea.style.gridTemplate = `repeat(${gridSize}, 1fr) / repeat(${gridSize}, 1fr)`
 createGrid();
 setHover();
 
@@ -58,6 +60,7 @@ function rainbowColor(){
     return color;
 };
 
+//raises the alpha of a pixel each pass through
 function darkenColor(event){
         currentColor = event.target.style.backgroundColor;
         if(currentColor){
