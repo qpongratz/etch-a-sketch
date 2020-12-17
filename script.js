@@ -1,6 +1,6 @@
 const sketchAreaSize = 400;
 let gridSize = 16;
-let selectedColor = rainbowColor();
+let selectedColor = darkenColor;
 
 const sketchArea = document.querySelector('.sketch-area');
 const clear = document.querySelector('.clear');
@@ -34,7 +34,7 @@ function setHover(){
 
 //Sets background color for use in hover fucntion.
 function changeColor(event){
-    event.target.style.backgroundColor = rainbowColor();    
+    event.target.style.backgroundColor = selectedColor(event);    
 }
 
 //resets and reinitializes the sketch area with new pixels at specified amount
@@ -49,6 +49,7 @@ function reset(){
     setHover();
 }
 
+//randomizes a color
 function rainbowColor(){
     let value1 = Math.floor(Math.random() * 255);
     let value2 = Math.floor(Math.random() * 255);
@@ -56,3 +57,17 @@ function rainbowColor(){
     let color = `rgb(${value1},${value2},${value3})`
     return color;
 };
+
+function darkenColor(event){
+        currentColor = event.target.style.backgroundColor;
+        if(currentColor){
+            decimal = currentColor.indexOf('.');
+            if (decimal<0){return currentColor};
+            alpha = currentColor.substr(decimal-1,3);
+            newAlpha = (+alpha + 0.1).toString();
+            newColor = currentColor.replace(alpha, newAlpha);
+        }else{
+            newColor = 'rgba(0,0,0,0.1)'
+        };
+        return newColor;
+}
