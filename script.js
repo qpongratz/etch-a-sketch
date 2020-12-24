@@ -1,13 +1,14 @@
-const sketchAreaSize = 400;
+const sketchAreaWidth = 687;
+const sketchAreaHeight = 535;
 let gridSize = 16;
-let selectedColor = darkenColor;
+let selectedColor = rainbowColor;
 
 const sketchArea = document.querySelector('.sketch-area');
 const clear = document.querySelector('.clear');
 
 //Initialize Gird
-sketchArea.style.width = `${sketchAreaSize}px`;
-sketchArea.style.height = `${sketchAreaSize}px`;
+sketchArea.style.width = `${sketchAreaWidth}px`;
+sketchArea.style.height = `${sketchAreaHeight}px`;
 sketchArea.style.gridTemplate = `repeat(${gridSize}, 1fr) / repeat(${gridSize}, 1fr)`
 createGrid();
 setHover();
@@ -22,8 +23,8 @@ function createGrid(){
         sketchArea.appendChild(pixel);
     };
     let pixel = document.querySelector('.pixel');
-    pixel.width = `${sketchAreaSize / gridSize}px`;
-    pixel.height = `${sketchAreaSize / gridSize}px`;
+    pixel.width = `${sketchAreaWidth / gridSize}px`;
+    pixel.height = `${sketchAreaHeight / gridSize}px`;
 };
 
 //Gives all the pixel divs a color on hover.

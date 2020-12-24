@@ -1,4 +1,23 @@
 .sketch-area{
     display: grid;
+    margin: auto;
+    position: absolute;
+    left:168px;
+    top: 168px
+}
+.button{
+    padding-top: 10%;
+    padding-bottom: 1em;
+    width: 200px;
+    margin: auto;
+}
+.frame{
+    position:relative;
+    width: 1023px;
+    margin: auto;
+}
+.credit{
+    width: 500px;
+    margin: auto;
 }
 
