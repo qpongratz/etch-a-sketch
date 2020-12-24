@@ -19,6 +19,9 @@
     display: flex;
     align-items: center;
 }
+#pixelCount{
+    width: 30px;
+}
 .slider{
     margin-left: 20px;
     margin-right: 20px;

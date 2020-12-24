@@ -1,10 +1,16 @@
 const sketchAreaWidth = 687;
 const sketchAreaHeight = 535;
 let gridSize = 16;
+let tempGridSize = 16;
 let selectedColor = rainbowColor;
 
 const sketchArea = document.querySelector('.sketch-area');
 const clear = document.querySelector('.clear');
+const slider = document.querySelector('.slider');
+const setButton = document.querySelector('.set');
+const pixelCount = document.querySelector('.pixelCount');
+console.log(slider);
+console.log(pixelCount);
 
 //Initialize Gird
 sketchArea.style.width = `${sketchAreaWidth}px`;
@@ -13,7 +19,24 @@ sketchArea.style.gridTemplate = `repeat(${gridSize}, 1fr) / repeat(${gridSize}, 
 createGrid();
 setHover();
 
-clear.addEventListener('click', reset)
+//Set button behaviors
+clear.addEventListener('click', reset);
+slider.oninput = function(){
+    pixelCount.textContent = this.value;
+    tempGridSize = this.value;
+};
+setButton.addEventListener('click', changePixelSize);
+
+
+function changePixelSize(){
+    if (window.confirm("Changing pixel size will reset your art. Do you wish to continue?")){
+        gridSize = tempGridSize;
+        reset();
+        createGrid();
+        setHover();
+    }
+    return;
+}
 
 //creates grid at gridSize
 function createGrid(){
@@ -45,8 +68,8 @@ function reset(){
     document.querySelectorAll('.pixel').forEach(pixel =>{
         pixel.remove();
     })
-    gridSize = Math.max(Math.min(window.prompt('1-100', 16), 100), 1);
-    console.log(gridSize);
+    //gridSize = Math.max(Math.min(window.prompt('1-100', 16), 100), 1);
+    //console.log(gridSize);
     sketchArea.style.gridTemplate = `repeat(${gridSize}, 1fr) / repeat(${gridSize}, 1fr)`;
     createGrid();
     setHover();
