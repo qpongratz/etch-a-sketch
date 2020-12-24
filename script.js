@@ -1,16 +1,15 @@
-const sketchAreaWidth = 687;
-const sketchAreaHeight = 535;
+const sketchAreaWidth = 688;
+const sketchAreaHeight = 535.3;
 let gridSize = 16;
 let tempGridSize = 16;
-let selectedColor = rainbowColor;
+let selectedColor = "black";
 
 const sketchArea = document.querySelector('.sketch-area');
 const clear = document.querySelector('.clear');
 const slider = document.querySelector('.slider');
 const setButton = document.querySelector('.set');
 const pixelCount = document.querySelector('.pixelCount');
-console.log(slider);
-console.log(pixelCount);
+const dropDown = document.getElementById('colors');
 
 //Initialize Gird
 sketchArea.style.width = `${sketchAreaWidth}px`;
@@ -21,15 +20,35 @@ setHover();
 
 //Set button behaviors
 clear.addEventListener('click', reset);
-slider.oninput = function(){
+slider.oninput = function () {
     pixelCount.textContent = this.value;
     tempGridSize = this.value;
+    return;
 };
 setButton.addEventListener('click', changePixelSize);
 
+//Controls which color is selected color
+dropDown.oninput = function () {
+    switch(this.value) {
+        case 'rainbowColor':
+            selectedColor = rainbowColor;
+            break;
+        case 'shadeColor':
+            selectedColor = shadeColor;
+            break;
+        case 'shadeRainbow':
+            selectedColor = shadeRainbow;
+            break;
+        default:
+            selectedColor = this.value;
+    }
+    console.log(selectedColor);
+    return;
+}
 
-function changePixelSize(){
-    if (window.confirm("Changing pixel size will reset your art. Do you wish to continue?")){
+//Change number of pixels and reset grid on confirm
+function changePixelSize() {
+    if (window.confirm("Changing pixel size will reset your art. Do you wish to continue?")) {
         gridSize = tempGridSize;
         reset();
         createGrid();
@@ -39,8 +58,8 @@ function changePixelSize(){
 }
 
 //creates grid at gridSize
-function createGrid(){
-    for (let i=0; i<(gridSize**2); i++) {
+function createGrid() {
+    for (let i = 0; i < (gridSize ** 2); i++) {
         let pixel = document.createElement('div');
         pixel.className = 'pixel';
         sketchArea.appendChild(pixel);
@@ -51,21 +70,26 @@ function createGrid(){
 };
 
 //Gives all the pixel divs a color on hover.
-function setHover(){
+function setHover() {
     let pixels = document.querySelectorAll('.pixel');
     pixels.forEach(pixel => {
         pixel.addEventListener('mouseover', changeColor);
+        pixel.addEventListener('click', changeColor);
     });
 }
 
 //Sets background color for use in hover fucntion.
-function changeColor(event){
-    event.target.style.backgroundColor = selectedColor(event);    
+function changeColor(event) {
+    if( typeof selectedColor === 'function'){
+        event.target.style.backgroundColor = selectedColor();
+    }else{
+        event.target.style.backgroundColor = selectedColor;
+    }
 }
 
 //resets and reinitializes the sketch area with new pixels at specified amount
-function reset(){
-    document.querySelectorAll('.pixel').forEach(pixel =>{
+function reset() {
+    document.querySelectorAll('.pixel').forEach(pixel => {
         pixel.remove();
     })
     //gridSize = Math.max(Math.min(window.prompt('1-100', 16), 100), 1);
@@ -76,25 +100,45 @@ function reset(){
 }
 
 //randomizes a color
-function rainbowColor(){
-    let value1 = Math.floor(Math.random() * 255);
-    let value2 = Math.floor(Math.random() * 255);
-    let value3 = Math.floor(Math.random() * 255);
-    let color = `rgb(${value1},${value2},${value3})`
+function rainbowColor() {
+    const value1 = Math.floor(Math.random() * 255);
+    const value2 = Math.floor(Math.random() * 255);
+    const value3 = Math.floor(Math.random() * 255);
+    const color = `rgba(${value1},${value2},${value3})`
     return color;
 };
 
 //raises the alpha of a pixel each pass through
-function darkenColor(event){
-        currentColor = event.target.style.backgroundColor;
-        if(currentColor){
-            decimal = currentColor.indexOf('.');
-            if (decimal<0){return currentColor};
-            alpha = currentColor.substr(decimal-1,3);
-            newAlpha = (+alpha + 0.1).toString();
-            newColor = currentColor.replace(alpha, newAlpha);
-        }else{
-            newColor = 'rgba(0,0,0,0.1)'
-        };
-        return newColor;
+function shadeColor() {
+    currentColor = this.event.target.style.backgroundColor;
+    if (currentColor) {
+        decimal = currentColor.indexOf('.');
+        if (decimal < 0) { return currentColor };
+        alpha = currentColor.substr(decimal - 1, 3);
+        newAlpha = (+alpha + 0.1).toString();
+        newColor = currentColor.replace(alpha, newAlpha);
+    } else {
+        newColor = 'rgba(0,0,0,0.13)'
+    };
+    return newColor;
+}
+
+function shadeRainbow(){
+    const currentColor = this.event.target.style.backgroundColor;
+    let newColor;
+    if (currentColor) {
+        const decimal = currentColor.indexOf('.');
+        if (decimal < 0) { return currentColor };
+        const alpha = currentColor.substr(decimal - 1, 3);
+        const newAlpha = (+alpha + 0.1).toString();
+        newColor = currentColor.replace(alpha, newAlpha);
+    } else {
+        const value1 = Math.floor(Math.random() * 255);
+        const value2 = Math.floor(Math.random() * 255);
+        const value3 = Math.floor(Math.random() * 255);
+        newColor = `rgba(${value1},${value2},${value3},0.13)` 
+    };
+    console.log(newColor)
+    return newColor;
+
 }
