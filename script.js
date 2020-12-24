@@ -1,5 +1,5 @@
-const sketchAreaWidth = 688;
-const sketchAreaHeight = 535.3;
+const sketchAreaWidth = 67;
+const sketchAreaHeight = 61.6;
 let gridSize = 16;
 let tempGridSize = 16;
 let selectedColor = "black";
@@ -12,8 +12,8 @@ const pixelCount = document.querySelector('.pixelCount');
 const dropDown = document.getElementById('colors');
 
 //Initialize Gird
-sketchArea.style.width = `${sketchAreaWidth}px`;
-sketchArea.style.height = `${sketchAreaHeight}px`;
+sketchArea.style.width = `${sketchAreaWidth}%`;
+sketchArea.style.height = `${sketchAreaHeight}%`;
 sketchArea.style.gridTemplate = `repeat(${gridSize}, 1fr) / repeat(${gridSize}, 1fr)`
 createGrid();
 setHover();
