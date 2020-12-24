@@ -5,11 +5,23 @@
     left:168px;
     top: 168px
 }
-.button{
-    padding-top: 10%;
-    padding-bottom: 1em;
-    width: 200px;
+.topper{
+    width: 1023px;
+    padding: 1%;
     margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.button{
+    width: auto;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+.slider{
+    margin-left: 20px;
+    margin-right: 20px;
 }
 .frame{
     position:relative;
@@ -19,5 +31,6 @@
 .credit{
     width: 500px;
     margin: auto;
+    text-align: center;
 }
 

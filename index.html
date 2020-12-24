@@ -9,7 +9,19 @@
     <body>
         <div class="topper">
             <div class="button">
-                <button class="clear">Set Number of Pixels</button>
+                <button class="clear">Clear Grid</button>
+            </div>
+            <div class="button">
+                <span id="pixelCount">16</span>
+                <input type="range" min="1" max="100" value="16" class="slider" id="pixelDecider">
+                <button class="set">Go!</button>
+            </div>
+            <div class="button">
+                <select name="colors" id="colors">
+                    <option value="black">Black</option>
+                    <option value="rainbowColor">Rainbow</option>
+                    <option value="darkenColor">Darken</option>
+                </select>
             </div>
         </div>
         <div class="frame">
@@ -17,7 +29,9 @@
             <div class="sketch-area"></div>
         </div>
         <div class="credit">
-            <p style="font-size: 0.9rem;font-style: italic;"><a href="https://www.flickr.com/photos/36041246@N00/3415581975">"Fancy Gold Frame"</a><span> by <a href="https://www.flickr.com/photos/36041246@N00">FrodoBabbs</a></span> is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=ccsearch&atype=html" style="margin-right: 5px;">CC BY-NC-SA 2.0</a><a href="https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=ccsearch&atype=html" target="_blank" rel="noopener noreferrer" style="display: inline-block;white-space: none;margin-top: 2px;margin-left: 3px;height: 22px !important;"><img style="height: inherit;margin-right: 3px;display: inline-block;" src="https://search.creativecommons.org/static/img/cc_icon.svg?image_id=143970b9-e9a2-4742-ab03-84a0246bbe76" /><img style="height: inherit;margin-right: 3px;display: inline-block;" src="https://search.creativecommons.org/static/img/cc-by_icon.svg" /><img style="height: inherit;margin-right: 3px;display: inline-block;" src="https://search.creativecommons.org/static/img/cc-nc_icon.svg" /><img style="height: inherit;margin-right: 3px;display: inline-block;" src="https://search.creativecommons.org/static/img/cc-sa_icon.svg" /></a></p>
+            <p class="credits" style="font-size: 0.9rem;font-style: italic;"><a href="https://www.flickr.com/photos/36041246@N00/3415581975">"Fancy Gold Frame"</a><span> by <a href="https://www.flickr.com/photos/36041246@N00">FrodoBabbs</a></span> is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=ccsearch&atype=html" style="margin-right: 5px;">CC BY-NC-SA 2.0</a><a href="https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=ccsearch&atype=html" target="_blank" rel="noopener noreferrer" style="display: inline-block;white-space: none;margin-top: 2px;margin-left: 3px;height: 22px !important;"><img style="height: inherit;margin-right: 3px;display: inline-block;" src="https://search.creativecommons.org/static/img/cc_icon.svg?image_id=143970b9-e9a2-4742-ab03-84a0246bbe76" /><img style="height: inherit;margin-right: 3px;display: inline-block;" src="https://search.creativecommons.org/static/img/cc-by_icon.svg" /><img style="height: inherit;margin-right: 3px;display: inline-block;" src="https://search.creativecommons.org/static/img/cc-nc_icon.svg" /><img style="height: inherit;margin-right: 3px;display: inline-block;" src="https://search.creativecommons.org/static/img/cc-sa_icon.svg" /></a></p>
+            <p class="credits" style="font-size: 0.9rem;font-style: italic;"><a href="https://www.flickr.com/photos/36041246@N00/3415581975">"Code"</a><span> by <a href="https://www.flickr.com/photos/36041246@N00">Quentin Pongratz</a></span> </p>
+            <p class="credits" style="font-size: 0.9rem;font-style: italic;"><a href="https://www.flickr.com/photos/36041246@N00/3415581975">"Art"</a><span> by <a href="https://www.flickr.com/photos/36041246@N00">You!</a></span></p>
         </div>
     </body>
 </main>
